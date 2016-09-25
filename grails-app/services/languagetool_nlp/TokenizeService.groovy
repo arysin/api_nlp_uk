@@ -8,6 +8,8 @@ import org.languagetool.tokenizers.uk.*
 
 
 class TokenizeService {
+    static transactional = false
+
     def WORD_PATTERN = ~/[а-яіїєґА-ЯІЇЄҐa-zA-Z0-9]/
 
     SRXSentenceTokenizer sentTokenizer = new SRXSentenceTokenizer(new Ukrainian())

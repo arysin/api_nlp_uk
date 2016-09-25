@@ -24,7 +24,7 @@ class TokenizeController {
     @ApiOperation(value = "Tokenizes the text into sentences and then into words", 
                 httpMethod = "POST"
                 ,
-                response = TokenizedText.class)
+                response = Response.class)
     @ApiResponses([
         @ApiResponse(code = 400, message = "Invalid body provided")
     ])
@@ -32,16 +32,21 @@ class TokenizeController {
         @ApiImplicitParam(name = 'body', paramType = 'body', required = true, dataType='InputBody', 
             value='Body text; e.g<br>{"text": "І.А. Іванов прийшов додому. І з\'їв 2 тис. кавунів."}')
     ])
-    def save(
-    ) {
+    def save() {
         if( ! request.JSON?.text ) {
-            render(status: 400, text: "body.text not specified: " + request.JSON)
+            render(status: 400, text: "\"text\" field not specified")
+            return
+        }
+
+        if( request.JSON.text.size() > 10000 ) {
+            render(status: 400, text: "text length cannot exceed 10000 characters")
             return
         }
 
         try {
             def tokens = tokenizeService.tokenize(request.JSON, params)
-            render new TokenizedText(tokens: tokens) as JSON
+            render new Response(tokens: tokens) as JSON
+//            render new TokenizedText(tokens: tokens) as JSON
         }
         catch(Exception e) {
             e.printStackTrace()
@@ -49,5 +54,10 @@ class TokenizeController {
             return
         }
 
+    }
+
+
+    static class Response {
+        List<String> tokens
     }
 }
