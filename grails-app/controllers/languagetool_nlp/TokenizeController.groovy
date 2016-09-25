@@ -17,6 +17,7 @@ class TokenizeController {
     static responseFormats = ['json']
     static allowedMethods = [save: "POST"]
     static defaultAction = "save"
+    static TEXT_LIMIT = 1000
 
     def tokenizeService
 
@@ -26,7 +27,8 @@ class TokenizeController {
                 ,
                 response = Response.class)
     @ApiResponses([
-        @ApiResponse(code = 400, message = "Invalid body provided")
+        @ApiResponse(code = 400, message = "Invalid body provided"),
+        @ApiResponse(code = 400, message = "Text limit exceeded")
     ])
     @ApiImplicitParams([
         @ApiImplicitParam(name = 'body', paramType = 'body', required = true, dataType='InputBody', 
@@ -38,8 +40,8 @@ class TokenizeController {
             return
         }
 
-        if( request.JSON.text.size() > 10000 ) {
-            render(status: 400, text: "text length cannot exceed 10000 characters")
+        if( request.JSON.text.size() > TEXT_LIMIT ) {
+            render(status: 400, text: String.format("text length cannot exceed %d characters", TEXT_LIMIT))
             return
         }
 
