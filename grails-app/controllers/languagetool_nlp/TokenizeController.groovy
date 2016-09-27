@@ -20,6 +20,7 @@ class TokenizeController {
 
     def tokenizeService
 
+
     @ApiOperation(value = "Tokenizes the text into sentences and then into words", 
                 httpMethod = "POST"
                 ,

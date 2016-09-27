@@ -7,12 +7,13 @@ class UrlMappings {
             constraints {
                 // apply constraints here
             }
-            
         }
 
         "/"(controller: 'application', action:'index')
         "/tokenize"(controller: 'tokenize', action:'save')
         "/lemmatize"(controller: 'lemmatize', action:'save')
+        "/tag"(controller: 'tag', action:'save')
+
         "500"(view: '/error')
         "404"(view: '/notFound')
     }
