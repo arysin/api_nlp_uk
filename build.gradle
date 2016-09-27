@@ -27,6 +27,8 @@ ext {
     gradleWrapperVersion = project.gradleWrapperVersion
 }
 
+war.archiveName='languagetool.war'
+
 repositories {
     mavenLocal()
     maven { url "https://repo.grails.org/grails/core" }

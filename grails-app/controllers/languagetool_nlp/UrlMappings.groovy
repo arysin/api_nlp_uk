@@ -11,6 +11,8 @@ class UrlMappings {
         }
 
         "/"(controller: 'application', action:'index')
+        "/tokenize"(controller: 'tokenize', action:'save')
+        "/lemmatize"(controller: 'lemmatize', action:'save')
         "500"(view: '/error')
         "404"(view: '/notFound')
     }
