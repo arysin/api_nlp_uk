@@ -7,17 +7,18 @@ import grails.converters.*
 //import io.swagger.annotations.*
 import com.wordnik.swagger.annotations.*
 
-@Api(value = "Tokenization services", 
-    description = "Tokenization services for Ukrainian language",
+
+@Api(value = "Lemmatization services", 
+    description = "Lemmatization services for Ukrainian language",
     produces = 'application/json',
     consumes = 'application/json'
 )
-class TokenizeController extends ControllerBase {
+class LemmatizeController extends ControllerBase {
 
-    def tokenizeService
+    def lemmatizeService
 
 
-    @ApiOperation(value = "Tokenizes the text into sentences and then into words", 
+    @ApiOperation(value = "Lemmatizes the text", 
                 httpMethod = "POST",
                 response = Response.class)
     @ApiResponses([
@@ -29,14 +30,13 @@ class TokenizeController extends ControllerBase {
             value='Body text; e.g<br>{"text": "І.А. Іванов прийшов додому. І з\'їв 2 тис. кавунів."}')
     ])
     def save() {
-
         if( ! validateRequest(request) )
             return
 
         try {
-            def tokens = tokenizeService.tokenize(request.JSON, params)
+            def tokens = lemmatizeService.lemmatize(request.JSON, params)
 
-            def response = new Response(tokens: tokens)
+            def response = new Response(lemmatizedSentences: tokens)
 
             updateNotes(response)
 
@@ -50,8 +50,9 @@ class TokenizeController extends ControllerBase {
 
     }
 
+
     static class Response {
-        List<String> tokens
+        List<String> lemmatizedSentences
         String notes
     }
 }
