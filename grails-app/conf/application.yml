@@ -59,6 +59,7 @@ grails:
     converters:
         encoding: UTF-8
 
+---
 swaggydoc:
     contact: arysin@gmail.com
     description: This is a project to provide NLP services for Ukrainian language based on LanguageTool

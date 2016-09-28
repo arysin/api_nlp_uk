@@ -64,16 +64,19 @@ dependencies {
 
 //    compile "io.springfox:springfox-swagger2:2.5.0"
 //    compile "io.springfox:springfox-swagger-ui:2.5.0"
-    compile "org.grails.plugins:swaggydoc-grails3:0.28.0"
     compile "org.grails:grails-plugin-gsp"
 
+    compile "org.grails.plugins:swaggydoc-grails3:0.28.0"
 //    compile "org.grails.plugins:rest-api-doc:0.6.1"
 
     compile "org.languagetool:language-uk:3.4"
 
     console "org.grails:grails-console"
+
     profile "org.grails.profiles:rest-api"
-    runtime "com.h2database:h2"
+
+//    runtime "com.h2database:h2"
+
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
     testCompile "org.grails:grails-datastore-rest-client"

@@ -12,7 +12,7 @@ abstract class ControllerBase {
     static responseFormats = ['json']
     static allowedMethods = [save: "POST"]
     static defaultAction = "save"
-    static TEXT_LIMIT = 1000
+    static TEXT_LIMIT = 50*1024
 
 
     def validateRequest(request) {
