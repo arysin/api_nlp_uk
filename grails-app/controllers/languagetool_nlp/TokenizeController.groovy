@@ -1,8 +1,12 @@
 package languagetool_nlp
 
 
-import grails.rest.*
 import grails.converters.*
+import grails.rest.*
+
+import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 //import io.swagger.annotations.*
 import com.wordnik.swagger.annotations.*
@@ -11,7 +15,9 @@ import com.wordnik.swagger.annotations.*
     description = "Tokenization services for Ukrainian language",
     produces = 'application/json',
     consumes = 'application/json'
+//	tags=["tokenize"]
 )
+//@Controller(value="/tokenize")
 class TokenizeController extends ControllerBase {
 
     def tokenizeService
@@ -26,8 +32,9 @@ class TokenizeController extends ControllerBase {
     ])
     @ApiImplicitParams([
         @ApiImplicitParam(name = 'body', paramType = 'body', required = true, dataType='InputBody', 
-            value='Body text; e.g<br>{"text": "І.А. Іванов прийшов додому. І з\'їв 2 тис. кавунів."}')
+            value='Body text; e.g<br>{"text": "Сьогодні у продажі. 12-те зібрання творів 1969 р. І. П. Котляревського."}')
     ])
+//	@RequestMapping(value = "/tokenize", method = RequestMethod.POST)
     def save() {
 
         if( ! validateRequest(request) )

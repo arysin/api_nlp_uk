@@ -1,5 +1,4 @@
 ---
----
 grails:
     profile: rest-api
     codegen:

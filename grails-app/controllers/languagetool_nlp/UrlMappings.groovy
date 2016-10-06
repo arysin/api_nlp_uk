@@ -10,7 +10,8 @@ class UrlMappings {
         }
 
         "/"(controller: 'application', action:'index')
-        "/tokenize"(controller: 'tokenize', action:'save')
+
+		"/tokenize"(controller: 'tokenize', action:'save')
         "/lemmatize"(controller: 'lemmatize', action:'save')
         "/tag"(controller: 'tag', action:'save')
 
