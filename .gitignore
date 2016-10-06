@@ -11,3 +11,4 @@ classes/
 .settings
 .classpath
 /bin/
+/.launch/
