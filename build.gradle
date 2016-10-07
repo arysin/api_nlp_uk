@@ -19,7 +19,7 @@ apply plugin:"war"
 apply plugin:"org.grails.grails-web"
 apply plugin:"org.grails.plugins.views-json"
 
-war.archiveName='languagetool.war'
+war.archiveName='languagetool2.war'
 
 
 repositories {
@@ -37,9 +37,9 @@ dependencyManagement {
 dependencies {
     compile "org.languagetool:language-uk:3.6-SNAPSHOT"
 
-    compile "org.grails.plugins:swaggydoc-grails3:0.28.0"
-//    compile "io.springfox:springfox-swagger2:2.5.0"
-//    compile "io.springfox:springfox-swagger-ui:2.5.0"
+//    compile "org.grails.plugins:swaggydoc-grails3:0.28.0"
+    compile "io.springfox:springfox-swagger2:2.5.0"
+    compile "io.springfox:springfox-swagger-ui:2.5.0"
 
     compile "org.grails:grails-dependencies"
 

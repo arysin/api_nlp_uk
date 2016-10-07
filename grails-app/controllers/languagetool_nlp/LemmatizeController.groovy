@@ -1,11 +1,13 @@
 package languagetool_nlp
 
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping
+
 import grails.rest.*
 import grails.converters.*
-
-//import io.swagger.annotations.*
-import com.wordnik.swagger.annotations.*
+import io.swagger.annotations.*
+//import com.wordnik.swagger.annotations.*
 
 
 @Api(value = "Lemmatization services", 
@@ -13,6 +15,8 @@ import com.wordnik.swagger.annotations.*
     produces = 'application/json',
     consumes = 'application/json'
 )
+@Controller()
+@RequestMapping(value="/lemmatize")
 class LemmatizeController extends ControllerBase {
 
     def lemmatizeService
@@ -22,13 +26,13 @@ class LemmatizeController extends ControllerBase {
                 httpMethod = "POST",
                 response = Response.class)
     @ApiResponses([
-        @ApiResponse(code = 400, message = "Invalid body provided"),
-        @ApiResponse(code = 400, message = "Text limit exceeded")
+        @ApiResponse(code = 400, message = "Invalid body provided")
     ])
     @ApiImplicitParams([
         @ApiImplicitParam(name = 'body', paramType = 'body', required = true, dataType='InputBody', 
             value='Body text; e.g<br>{"text": "Сьогодні у продажі. 12-те зібрання творів 1969 р. І. П. Котляревського."}')
     ])
+	@RequestMapping(value="/")
     def save() {
         if( ! validateRequest(request) )
             return

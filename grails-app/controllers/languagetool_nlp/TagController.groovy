@@ -1,11 +1,13 @@
 package languagetool_nlp
 
 
-import grails.rest.*
 import grails.converters.*
+import grails.rest.*
+import io.swagger.annotations.*
 
-//import io.swagger.annotations.*
-import com.wordnik.swagger.annotations.*
+import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.RequestMapping
+//import com.wordnik.swagger.annotations.*
 
 
 @Api(value = "Tagging services",
@@ -13,6 +15,8 @@ import com.wordnik.swagger.annotations.*
     produces = 'application/json',
     consumes = 'application/json'
 )
+@Controller()
+@RequestMapping(value="/tag")
 class TagController extends ControllerBase {
 
     def taggingService
@@ -29,6 +33,7 @@ class TagController extends ControllerBase {
         @ApiImplicitParam(name = 'body', paramType = 'body', required = true, dataType='InputBody', 
             value='Body text; e.g<br>{"text": "Сьогодні у продажі. 12-те зібрання творів 1969 р. І. П. Котляревського."}')
     ])
+	@RequestMapping(value="/")
     def save() {
         if( ! validateRequest(request) )
             return

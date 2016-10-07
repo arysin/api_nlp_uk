@@ -57,12 +57,3 @@ grails:
         defaultScope: singleton
     converters:
         encoding: UTF-8
-
----
-swaggydoc:
-    contact: arysin@gmail.com
-    description: This is a project to provide NLP services for Ukrainian language based on LanguageTool
-    license: Apache 2.0
-    licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html
-    title: NLP services for Ukrainian
-    apiVersion: 1.0

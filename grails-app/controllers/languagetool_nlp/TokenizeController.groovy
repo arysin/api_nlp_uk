@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-//import io.swagger.annotations.*
-import com.wordnik.swagger.annotations.*
+import io.swagger.annotations.*
+//import com.wordnik.swagger.annotations.*
 
 @Api(value = "Tokenization services", 
     description = "Tokenization services for Ukrainian language",
@@ -17,7 +17,7 @@ import com.wordnik.swagger.annotations.*
     consumes = 'application/json'
 //	tags=["tokenize"]
 )
-//@Controller(value="/tokenize")
+@Controller(value="/tokenize")
 class TokenizeController extends ControllerBase {
 
     def tokenizeService
@@ -34,7 +34,7 @@ class TokenizeController extends ControllerBase {
         @ApiImplicitParam(name = 'body', paramType = 'body', required = true, dataType='InputBody', 
             value='Body text; e.g<br>{"text": "Сьогодні у продажі. 12-те зібрання творів 1969 р. І. П. Котляревського."}')
     ])
-//	@RequestMapping(value = "/tokenize", method = RequestMethod.POST)
+	@RequestMapping(value="/")
     def save() {
 
         if( ! validateRequest(request) )
