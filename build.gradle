@@ -19,7 +19,7 @@ apply plugin:"war"
 apply plugin:"org.grails.grails-web"
 apply plugin:"org.grails.plugins.views-json"
 
-war.archiveName='languagetool2.war'
+war.archiveName='languagetool.war'
 
 
 repositories {

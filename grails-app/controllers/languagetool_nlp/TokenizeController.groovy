@@ -25,7 +25,7 @@ class TokenizeController extends ControllerBase {
 
     @ApiOperation(value = "Tokenizes the text into sentences and then into words", 
                 httpMethod = "POST",
-                response = Response.class)
+                response = TokenizeResponse.class)
     @ApiResponses([
         @ApiResponse(code = 400, message = "Invalid body provided"),
         @ApiResponse(code = 400, message = "Text limit exceeded")
@@ -43,7 +43,7 @@ class TokenizeController extends ControllerBase {
         try {
             def tokens = tokenizeService.tokenize(request.JSON, params)
 
-            def response = new Response(tokens: tokens)
+            def response = new TokenizeResponse(tokens: tokens)
 
             updateNotes(response)
 
@@ -57,8 +57,8 @@ class TokenizeController extends ControllerBase {
 
     }
 
-    static class Response {
-        List<String> tokens
+    static class TokenizeResponse {
+        List<List<String>> tokens
         String notes
     }
 }

@@ -17,7 +17,7 @@ class TokenizeService {
     def onlyWords = true
 
 
-    def tokenize(def body, def params) {
+    List<List<String>> tokenize(def body, def params) {
         def text = body.text
 
         List<String> sentences = sentTokenizer.tokenize(text);

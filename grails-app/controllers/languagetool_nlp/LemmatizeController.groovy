@@ -24,7 +24,7 @@ class LemmatizeController extends ControllerBase {
 
     @ApiOperation(value = "Lemmatizes the text", 
                 httpMethod = "POST",
-                response = Response.class)
+                response = LemmatizeResponse.class)
     @ApiResponses([
         @ApiResponse(code = 400, message = "Invalid body provided")
     ])
@@ -40,7 +40,7 @@ class LemmatizeController extends ControllerBase {
         try {
             def tokens = lemmatizeService.lemmatize(request.JSON, params)
 
-            def response = new Response(lemmatizedSentences: tokens)
+            def response = new LemmatizeResponse(lemmatizedSentences: tokens)
 
             updateNotes(response)
 
@@ -55,7 +55,7 @@ class LemmatizeController extends ControllerBase {
     }
 
 
-    static class Response {
+	static class LemmatizeResponse {
         List<String> lemmatizedSentences
         String notes
     }

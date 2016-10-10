@@ -6,6 +6,8 @@ grails:
     spring:
         transactionManagement:
             proxies: false
+    resources:
+        pattern: '/**'
 info:
     app:
         name: '@info.app.name@'

@@ -24,7 +24,7 @@ class TagController extends ControllerBase {
 
     @ApiOperation(value = "Tags the text", 
                 httpMethod = "POST",
-                response = Response.class)
+                response = TagResponse.class)
     @ApiResponses([
         @ApiResponse(code = 400, message = "Invalid body provided"),
         @ApiResponse(code = 400, message = "Text limit exceeded")
@@ -41,7 +41,7 @@ class TagController extends ControllerBase {
         try {
             def tokens = taggingService.tag(request.JSON, params)
 
-            def response = new Response(taggedText: tokens)
+            def response = new TagResponse(taggedText: tokens)
 
             updateNotes(response)
 
@@ -56,7 +56,7 @@ class TagController extends ControllerBase {
     }
 
 
-    static class Response {
+    static class TagResponse {
         List<String> taggedText
         String notes
     }
