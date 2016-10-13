@@ -13,7 +13,8 @@ import io.swagger.annotations.*
 @Api(value = "Lemmatization services", 
     description = "Lemmatization services for Ukrainian language",
     produces = 'application/json',
-    consumes = 'application/json'
+    consumes = 'application/json',
+	tags = ["lemmatize"]
 )
 @Controller()
 @RequestMapping(value="/lemmatize")
@@ -23,8 +24,16 @@ class LemmatizeController extends ControllerBase {
 
 
     @ApiOperation(value = "Lemmatizes the text", 
-                httpMethod = "POST",
-                response = LemmatizeResponse.class)
+            httpMethod = "POST",
+            response = LemmatizeResponse.class,
+			extensions = [
+				@Extension(properties = [
+					@ExtensionProperty(name = "x-taskClass", value = "lemmatize"), 
+					@ExtensionProperty(name = "x-taskAlgo", value = "nlp_uk"),
+					@ExtensionProperty(name = "x-taskModel", value = "dict_uk")
+				])
+			]
+	)
     @ApiResponses([
         @ApiResponse(code = 400, message = "Invalid body provided")
     ])

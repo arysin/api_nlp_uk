@@ -14,8 +14,8 @@ import io.swagger.annotations.*
 @Api(value = "Tokenization services", 
     description = "Tokenization services for Ukrainian language",
     produces = 'application/json',
-    consumes = 'application/json'
-//	tags=["tokenize"]
+    consumes = 'application/json',
+	tags=["tokenize"] 
 )
 @Controller(value="/tokenize")
 class TokenizeController extends ControllerBase {
@@ -24,8 +24,16 @@ class TokenizeController extends ControllerBase {
 
 
     @ApiOperation(value = "Tokenizes the text into sentences and then into words", 
-                httpMethod = "POST",
-                response = TokenizeResponse.class)
+            httpMethod = "POST",
+            response = TokenizeResponse.class,
+			extensions = [
+				@Extension(properties = [
+					@ExtensionProperty(name = "x-taskClass", value = "tokenization"), 
+					@ExtensionProperty(name = "x-taskAlgo", value = "nlp_uk")//,
+//					@ExtensionProperty(name = "x-taskModel", value = "dict_uk")
+				])
+			]
+	)
     @ApiResponses([
         @ApiResponse(code = 400, message = "Invalid body provided"),
         @ApiResponse(code = 400, message = "Text limit exceeded")

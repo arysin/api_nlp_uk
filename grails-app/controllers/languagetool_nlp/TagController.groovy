@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Api(value = "Tagging services",
     description = "Tagging services for Ukrainian language",
     produces = 'application/json',
-    consumes = 'application/json'
+    consumes = 'application/json',
+	tags = ["tag"]
 )
 @Controller()
 @RequestMapping(value="/tag")
@@ -23,8 +24,16 @@ class TagController extends ControllerBase {
 
 
     @ApiOperation(value = "Tags the text", 
-                httpMethod = "POST",
-                response = TagResponse.class)
+            httpMethod = "POST",
+            response = TagResponse.class,
+			extensions = [
+				@Extension(properties = [
+					@ExtensionProperty(name = "x-taskClass", value = "tagging"), 
+					@ExtensionProperty(name = "x-taskAlgo", value = "nlp_uk"),
+					@ExtensionProperty(name = "x-taskModel", value = "dict_uk")
+				])
+			]
+	)
     @ApiResponses([
         @ApiResponse(code = 400, message = "Invalid body provided"),
         @ApiResponse(code = 400, message = "Text limit exceeded")
