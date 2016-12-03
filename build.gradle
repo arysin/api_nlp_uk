@@ -6,7 +6,7 @@ buildscript {
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
 //        classpath "org.grails.plugins:hibernate5:6.0.0"
-        classpath "org.grails.plugins:views-gradle:1.1.0"
+        classpath "org.grails.plugins:views-gradle:1.1.2"
     }
 }
 
@@ -35,7 +35,7 @@ dependencyManagement {
 }
 
 dependencies {
-    compile "org.languagetool:language-uk:3.6-SNAPSHOT"
+    compile "org.languagetool:language-uk:3.5"
 
 //    compile "org.grails.plugins:swaggydoc-grails3:0.28.0"
     compile "io.springfox:springfox-swagger2:2.5.0"
@@ -73,4 +73,8 @@ dependencies {
 //    testCompile "org.grails:grails-datastore-rest-client"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
+}
+
+bootRun {
+    jvmArgs = ['-Dspring.output.ansi.enabled=always']
 }
