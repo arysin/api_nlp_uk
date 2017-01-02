@@ -35,7 +35,7 @@ dependencyManagement {
 }
 
 dependencies {
-    compile "org.languagetool:language-uk:3.5"
+    compile "org.languagetool:language-uk:3.6"
 
 //    compile "org.grails.plugins:swaggydoc-grails3:0.28.0"
     compile "io.springfox:springfox-swagger2:2.5.0"
