@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:11
 
 RUN set -ex \
   && apt-get update \
