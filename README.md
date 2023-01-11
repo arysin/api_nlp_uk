@@ -1,4 +1,4 @@
-## REST API для аналізу українських текстів (NLP) за допомогою LanguageTool.
+## REST API для аналізу українських текстів (NLP) за допомогою LanguageTool
 
 This project provides REST API for analyzing Ukrainian texts with LanguageTool.
 
