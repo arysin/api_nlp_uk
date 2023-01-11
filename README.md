@@ -6,7 +6,7 @@ This project provides REST API for analyzing Ukrainian texts with LanguageTool.
 
 The `/uber` endpoint accepts a batch of texts, processes all of them parallel and returns [sentences, tokens, lemmas] for each text.
 ```
-docker run -it -p 8080:8080 ghcr.io/proger/api_nlp_uk:latest
+docker run -p 8080:8080 ghcr.io/proger/api_nlp_uk:uber
 $ curl -s  -X POST -H "Content-Type: application/json" -d "['Привіт, котанче. Як справи?', 'Ну шо, приїхали?']" http://localhost:8080/uber | jq -c '.[]'
 
 [["Привіт, котанче. ",["Привіт","котанче"],["","привіт",","," ","котанче","."," "]],["Як справи?",["Як","справи"],["","як"," ","справа","?"]]]
