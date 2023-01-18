@@ -29,7 +29,13 @@ class UberService {
                 [sentences, analyzedSentences].transpose().collect {
                     def sent = it[0]
                     def analyzedSentence = it[1]
+
                     def words = wordTokenizer.tokenize(sent).findAll { WORD_PATTERN.matcher(it) }
+
+                    words = adjustTokens(words, true).collect { word ->
+                        word.replace("\n", options.newLine).replace("\t", " ")
+                    };
+
                     def lemmas = analyzedSentence.getTokens().collect { AnalyzedTokenReadings readings ->
                         if( readings.isWhitespace() || readings.getAnalyzedToken(0).lemma == null ) {
                             readings.token
@@ -43,5 +49,28 @@ class UberService {
                 }
             }
         }
+    }
+    
+    public static Pattern WITH_PARTS = ~/(?iu)([а-яіїєґ][а-яіїєґ'\u2019\u02bc-]+)[-\u2013](бо|но|то|от|таки)$/
+    
+    List<String> adjustTokens(List<String> words, boolean withHyphen) {
+        List<String> newWords = []
+        String hyph = withHyphen ? "-" : ""
+        
+        words.forEach { String word ->
+            String lWord = word.toLowerCase().replace('\u2013', '-')
+            if( lWord.contains('-') && ! (lWord in notParts) ) {
+                def matcher = WITH_PARTS.matcher(word)
+
+                if( matcher ) {
+                    newWords << matcher.group(1) << hyph + matcher.group(2)
+                    return
+                }
+            }
+
+            newWords << word
+        }
+        
+        return newWords
     }
 }
