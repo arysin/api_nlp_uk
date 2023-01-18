@@ -5,6 +5,7 @@ import org.languagetool.tokenizers.*
 import org.languagetool.language.*
 import org.languagetool.uk.*
 import org.languagetool.tokenizers.uk.*
+import java.util.regex.Pattern
 
 
 import static groovyx.gpars.GParsPool.*
@@ -17,7 +18,6 @@ class UberService {
     SRXSentenceTokenizer sentTokenizer = new SRXSentenceTokenizer(new Ukrainian())
     UkrainianWordTokenizer wordTokenizer = new UkrainianWordTokenizer()
     JLanguageTool langTool = new MultiThreadedJLanguageTool(new Ukrainian());
-    TokenizeOptions options = new TokenizeOptions();
 
     List<List<List<String>>> uber(def body, def params) {
         def batch = body
@@ -34,7 +34,7 @@ class UberService {
                     def words = wordTokenizer.tokenize(sent).findAll { WORD_PATTERN.matcher(it) }
 
                     words = adjustTokens(words, true).collect { word ->
-                        word.replace("\n", options.newLine).replace("\t", " ")
+                        word.replace("\n", ' ').replace("\t", " ")
                     };
 
                     def lemmas = analyzedSentence.getTokens().collect { AnalyzedTokenReadings readings ->
