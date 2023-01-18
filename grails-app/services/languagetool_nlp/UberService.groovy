@@ -17,6 +17,7 @@ class UberService {
     SRXSentenceTokenizer sentTokenizer = new SRXSentenceTokenizer(new Ukrainian())
     UkrainianWordTokenizer wordTokenizer = new UkrainianWordTokenizer()
     JLanguageTool langTool = new MultiThreadedJLanguageTool(new Ukrainian());
+    TokenizeOptions options = new TokenizeOptions();
 
     List<List<List<String>>> uber(def body, def params) {
         def batch = body
