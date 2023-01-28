@@ -1,14 +1,9 @@
-FROM java:8-jdk
-
-RUN set -ex \
-  && apt-get update \
-  && apt-get install flip
+FROM openjdk:11
 
 ADD . /app
 RUN set -ex \
   && cd /app \
-  && flip -u ./gradlew \
-  && ./gradlew build
+  && ./gradlew build --no-daemon
 
 EXPOSE 8080
 WORKDIR /app

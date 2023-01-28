@@ -1,27 +1,27 @@
-## Це — веб-служба (REST API) для аналізу українських текстів (NLP) за допомогою LanguageTool. ##
+## REST API для аналізу українських текстів (NLP) за допомогою LanguageTool
 
-## This project provides REST API for analyzing Ukrainian texts with LanguageTool. ##
+This project provides REST API for analyzing Ukrainian texts with LanguageTool.
 
+### Quick Start
 
-### Як встановити ###
-* Встановити java (JDK 8 або новішу)
-* Клонувати проект з github
-* Запустити `./gradlew bootRun`
-* Документація в JSON: http://localhost:8080/v2/api-docs
-* Документація з UI: http://localhost:8080/swagger-ui.html
+The `/uber` endpoint accepts a batch of texts, processes all of them parallel and returns [sentences, tokens, lemmas] for each text.
 
-### Як використовувати через Docker ###
+Start the web server on port 8080:
 
 ```
-docker build -t api_nlp_uk:latest .
-docker run -it -p 8080:8080 api_nlp_uk:latest
-curl -X POST -H "Content-Type: application/json" -d "{'text': 'Сьогодні у продажі. 12-те зібрання творів 1969 р. І. П. Котляревського.'}" http://localhost:8080/lemmatize/
+docker run -p 8080:8080 ghcr.io/proger/api_nlp_uk:uber
 ```
 
-Або можна викоритсовувати Docker image який підтримується в іншому репозиторії.
+Run example query:
 
 ```
-docker run -it -p 5000:5000 chaliy/api_nlp_uk:latest
+curl -s  -X POST -H "Content-Type: application/json" -d "['Привіт, котанче. Як справи?', 'Ну шо, приїхали?']" http://localhost:8080/uber \
+  | jq -c '.[]'
+```
+
+This will respond like:
+```
+[[["Привіт, котанче. ",["Привіт",","," ","котанче","."," "],["привіт",","," ","котанче","."," "]],["Як справи?",["Як"," ","справи","?"],["як"," ","справа","?"]]],[["Ну шо, приїхали?",["Ну"," ","шо",","," ","приїхали","?"],["ну"," ","шо",","," ","приїхати","?"]]]]
 ```
 
 Вільно розповсюджується за умов ліцензії GPL версії 3.
